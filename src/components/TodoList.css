@@ -1,0 +1,17 @@
+.adding{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+.todo{
+    display: flex;
+    flex-direction: column;
+    font-family: Bahnschrift;
+    justify-content: right;
+}
+.done{
+    display: flex;
+    flex-direction: column;
+    font-family: Bahnschrift;
+    justify-content: left;
+}
