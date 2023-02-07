@@ -1,30 +1,13 @@
-import React, { useState } from "react";
-import './TodoList.css'
-function TodoList() {
-    const [todoTasks, setTodoTasks] = useState([]);
-    const [doneTasks, setDoneTasks] = useState([]);
-    const [taskInput, setTaskInput] = useState("");
+import React from "react";
+import TodoList from "../components/TodoList";
+import renderer from "react-test-renderer";
 
-    const handleTaskInput = (event) => {
-        setTaskInput(event.target.value);
-    };
-
-    const handleAddTask = () => {
-        if (!taskInput) {
-            return;
-        }
-
-        setTodoTasks([...todoTasks, taskInput]);
-        setTaskInput("");
-    };
-
-    const handleTaskComplete = (index) => {
-        setDoneTasks([...doneTasks, todoTasks[index]]);
-        setTodoTasks(todoTasks.filter((_, i) => i !== index));
-    };
-
-    return (
-        <div className="container">
+it('renders correctly', () => {
+    const tree = renderer
+        .create(<TodoList/>)
+        .toJSON();
+    expect(tree).toMatchInlineSnapshot(`
+    <div className="container">
             <div className="adding">
                 <input type="text" value={taskInput} onChange={handleTaskInput} />
                 <button onClick={handleAddTask}>Add</button>
@@ -49,7 +32,7 @@ function TodoList() {
                 </ul>
             </div>
         </div>
-    );
-}
+`);
+});
 
-export default TodoList;
+
